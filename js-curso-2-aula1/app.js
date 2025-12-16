@@ -1,9 +1,11 @@
-// // let titulo = document.querySelector('h1');
-// // titulo.innerHTML = 'Jogo do numero secreto';
+//let titulo = document.querySelector('h1');
+//titulo.innerHTML = 'Jogo do numero secreto';
 
-// // let paragrafo = document.querySelector('p');
-// // paragrafo.innerHTML = 'Escolha um numero entre 1 e 10';
+//let paragrafo = document.querySelector('p');
+//paragrafo.innerHTML = 'Escolha um numero entre 1 e 10';
 
+let listaDeNumerosSorteados = [];
+let numeroLimite = 10;
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 
@@ -38,7 +40,19 @@ function verificarChute() {
 }
 
 function gerarNumeroAleatorio() {
-  return parseInt(Math.random() * 10 + 1);
+  let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);
+  let qtdNoArray = listaDeNumerosSorteados.length;
+  if (qtdNoArray == numeroLimite) {
+    listaDeNumerosSorteados = [];
+  }
+  if (listaDeNumerosSorteados.includes(numeroEscolhido)) {
+    console.log('passou pelo if, o numero esta na lista');
+    return gerarNumeroAleatorio();
+  } else {
+    listaDeNumerosSorteados.push(numeroEscolhido);
+    console.log('listaDeNumerosSorteados ' + listaDeNumerosSorteados);
+    return numeroEscolhido;
+  }
 }
 
 function limparCampo() {
@@ -57,6 +71,7 @@ function exibirMsgInicial() {
   exibirTextoNaTela('h1', 'Jogo do numero secreto');
   exibirTextoNaTela('p', 'Escolha um numero entre 1 e 10');
 }
+
 //--------------------------------------------------DESAFIOS AULA 1
 // //DESAFIO2
 // let tituloDesafio = document.querySelector('h1');
@@ -140,3 +155,98 @@ function exibirMsgInicial() {
 // }
 
 // numQuadrado(num2);
+
+//--------------------------------------------------DESAFIOS AULA 3
+//DESAFIO1
+// let peso = prompt('Digite seu peso em KGs');
+// let altura = prompt('Digite sua altura em MTs (ex.: 1.65 com ponto');
+
+// function IMC(peso, altura) {
+//   let imc = peso / (altura * altura);
+//   console.log('DESAFIO1 O IMC é ' + imc);
+// }
+
+// IMC(peso, altura);
+
+//DESAFIO2
+// let numero = prompt('Digite um numero para fazer seu fatorial');
+
+// function calcularFatorial(numero) {
+//   if (numero == 0 || numero == 1) {
+//     return 1;
+//   }
+
+//   let fatorial = 1;
+
+//   for (let i = 2; i < numero; i++) {
+//     fatorial *= i;
+//     console.log('numero ' + numero);
+//     console.log('i ' + i);
+//     console.log('fatorial ' + fatorial);
+//   }
+
+//   return fatorial;
+// }
+
+// let result = calcularFatorial(numero);
+// console.log('O fatorial de ' + numero + ' é ' + result);
+
+//DESAFIO3
+
+// let dolar = prompt('Quanto voce quer converter? Digite o valor de dolares.');
+
+// function conversorDolar(valor) {
+//   let real = 4.8;
+//   return valor * real;
+// }
+
+// let result = conversorDolar(dolar);
+// console.log('O valor convertido é R$' + result);
+
+//DESAFIO4
+// let largura = prompt('Digite a largura:');
+// let altura = prompt('Digite a altura:');
+
+// function areaTotal(alt, larg) {
+//   return alt * larg;
+// }
+
+// let result = areaTotal(altura, largura);
+// console.log('A area total da sala é ' + result);
+
+//DESAFIO5
+
+//DESAFIO6
+
+//--------------------------------------------------DESAFIOS AULA 4
+
+// //DESAFIO1
+// let listaGenerica = [];
+// console.log('desafio 1 ' + listaGenerica);
+
+// //DESAFIO2
+// let listaDeLinguagensDeProgramacao = [
+//   'JavaScript',
+//   'C',
+//   'C++',
+//   'Kotlin',
+//   'Python',
+// ];
+// console.log('desafio 2 ' + listaDeLinguagensDeProgramacao);
+
+// //DESAFIO3
+// listaDeLinguagensDeProgramacao.push('Java');
+// listaDeLinguagensDeProgramacao.push('Ruby');
+// listaDeLinguagensDeProgramacao.push('GoLang');
+// console.log('desafio 3 ' + listaDeLinguagensDeProgramacao);
+
+// //DESAFIO4
+// let listaDeNomes = ['Carol', 'Ze', 'Lê'];
+// console.log('desafio 4 ' + listaDeNomes[0]);
+
+// //DESAFIO5
+// console.log('desafio 5 ' + listaDeNomes[1]);
+
+// //DESAFIO6
+// let ultimo = listaDeNomes.length - 1;
+// console.log('desafio 6 ' + listaDeNomes[ultimo]);
