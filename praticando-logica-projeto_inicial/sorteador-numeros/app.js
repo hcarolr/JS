@@ -8,6 +8,14 @@ function sortear() {
   let sorteados = [];
   let numero;
 
+  if (maiorNumero - menorNumero + 1 < qtdNumeros) {
+    alert(
+      'A quantidade de números não pode ser inferior a diferença entre o maior e o menor.'
+    );
+    reiniciar();
+    return;
+  }
+
   for (let i = 0; i < qtdNumeros; i++) {
     numero = gerarNumeroAleatorio(menorNumero, maiorNumero);
     while (sorteados.includes(numero)) {
@@ -19,7 +27,7 @@ function sortear() {
   resultado.innerHTML = `<label class="texto__paragrafo"
               >Números sorteados: ${sorteados}</label
             >`;
-  alteraStatusBotao();
+  habilitaBotao();
 }
 
 function reiniciar() {
@@ -33,20 +41,22 @@ function reiniciar() {
   resultado.innerHTML = `<label class="texto__paragrafo"
               >Números sorteados: nenhum até agora</label
             >`;
-  alteraStatusBotao();
+
+  desabilitaBotao();
 }
 
 function gerarNumeroAleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function alteraStatusBotao() {
+function desabilitaBotao() {
   let botao = document.getElementById('btn-reiniciar');
-  if (botao.classList.contains('container__botao-desabilitado')) {
-    botao.classList.remove('container__botao-desabilitado');
-    botao.classList.add('container__botao');
-  } else {
-    botao.classList.remove('container__botao');
-    botao.classList.add('container__botao-desabilitado');
-  }
+  botao.classList.remove('container__botao');
+  botao.classList.add('container__botao-desabilitado');
+}
+
+function habilitaBotao() {
+  let botao = document.getElementById('btn-reiniciar');
+  botao.classList.remove('container__botao-desabilitado');
+  botao.classList.add('container__botao');
 }
